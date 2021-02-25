@@ -10,13 +10,10 @@ class hg_box::monitor{
 
   }
 
-  file {'/etc/profile.d/whodidwhat.sh':
+  file {'/etc/profilze.d/whodidwhat_profile.sh':
       ensure  => 'present'
       owner   => 'root',
       mode    => '755', 
       source  => 'puppet:///modules/hg_box/monitor/cbox-op-scripts/whodidwhat.profile.sh',
 
   }
-
-
-
