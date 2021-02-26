@@ -1,4 +1,4 @@
-FILES_TO_RPM = cboxredirectd cboxredirectd.yaml cboxredirectd.service cboxredirectd.logrotate
+FILES_TO_RPM = wodidwhat.sh whodidwhat_profile.sh
 SPECFILE = $(shell find . -type f -name *.spec)
 PACKAGE  = $(shell awk '$$1 == "Name:"     { print $$2 }' $(SPECFILE) )
 VERSION  = $(shell awk '$$1 == "Version:"  { print $$2 }' $(SPECFILE) )
