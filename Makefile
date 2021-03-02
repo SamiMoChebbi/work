@@ -1,4 +1,4 @@
-FILES_TO_RPM = wodidwhat.sh whodidwhat_profile.sh
+FILES_TO_RPM = whodidwhat.sh whodidwhat.profile.sh
 SPECFILE = $(shell find . -type f -name *.spec)
 PACKAGE  = $(shell awk '$$1 == "Name:"     { print $$2 }' $(SPECFILE) )
 VERSION  = $(shell awk '$$1 == "Version:"  { print $$2 }' $(SPECFILE) )
@@ -16,8 +16,7 @@ rpmdefines=--define='_topdir ${rpmbuild}' \
         --define='_srcrpmdir %{_topdir}/SRPMS' \
         --define='_rpmdir %{_topdir}/RPMS'
 
-dist: clean
-	go build 
+dist: clean 
 	@mkdir -p $(PACKAGE)-$(VERSION)
 	@cp -r $(FILES_TO_RPM) $(PACKAGE)-$(VERSION)
 	tar cpfz ./$(PACKAGE)-$(VERSION).tar.gz $(PACKAGE)-$(VERSION)
