@@ -12,7 +12,7 @@ BuildArch: x86_64
 Source: %{name}-%{version}.tar.gz
 
 %description
-This RPM provides the whodidwhat command for tracability for user commands 
+This RPM provides the whodidwhat command for traceability for user commands 
 
 # Don't do any post-install weirdness, especially compiling .py files
 %define __os_install_post %{nil}
