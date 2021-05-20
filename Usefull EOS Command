@@ -1,0 +1,20 @@
+#To get the path and the list of file linked to a FST
+eos fs dumpmd <fsid> --path
+
+#To get info on the file
+eos file info "path"
+
+#To get info the error_label
+eos file check "path"
+
+#To duplicate and drop replica
+eos file adjustreplica "path"
+
+#To fix error_label="SIZE" when drain is failing
+eos file verify "path" -commitsize
+
+To fix error_label="checksum"
+eos file verify "path" -commitchecksum -checksum
+
+#To run multiple command to fix files in bad state in EOS
+eos fs dumpmd 71 --path | grep recovered |cut --complement -c 1,2,3,4,5 | awk  '{print "eos file adjustreplica","\""$0"\""}' | sh -x
