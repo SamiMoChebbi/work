@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 from glob import iglob
 from os.path import join
 from itertools  import zip_longest
