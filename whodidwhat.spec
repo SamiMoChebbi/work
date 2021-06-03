@@ -4,7 +4,7 @@
 
 Name: whodidwhat
 Summary: Traceability for user commands 
-Version: 1.0.0
+Version: 2.0.0
 License: AGPLv3
 Release: 1%{?dist}
 Group: CERN-IT/ST
@@ -27,15 +27,18 @@ This RPM provides the whodidwhat command for traceability for user commands
 rm -rf %buildroot/
 mkdir -p %buildroot/usr/local/sbin
 mkdir -p %buildroot/etc/profile.d
-install -m 755 whodidwhat.sh	     %buildroot/usr/local/sbin
+install -m 755 whodidwhatV2.py	     %buildroot/usr/local/sbin/whodidwhat
 install -m 755 whodidwhat.profile.sh    %buildroot/etc/profile.d
 
 %files
 %defattr(-,root,root,-)
-/usr/local/sbin/whodidwhat.sh
+/usr/local/sbin/whodidwhat
 /etc/profile.d/whodidwhat.profile.sh
 
 
 %changelog
+* Thu Jun 3 2021 Sami Mohamed Chebbi <sami.mohamed.chebbi@cern.ch> 2.0.0
+- Python implementation of whodidwhat to fix major issues
+- Add user, to and from filters
 * Thu Feb 25 2021 Sami Mohamed Chebbi <sami.mohamed.chebbi@cern.ch> 1.0.0
 - First Version of whodidwhat
