@@ -1,4 +1,4 @@
-FILES_TO_RPM = whodidwhat.sh whodidwhat.profile.sh
+FILES_TO_RPM = whodidwhatV2.py whodidwhat.profile.sh
 SPECFILE = $(shell find . -type f -name *.spec)
 PACKAGE  = $(shell awk '$$1 == "Name:"     { print $$2 }' $(SPECFILE) )
 VERSION  = $(shell awk '$$1 == "Version:"  { print $$2 }' $(SPECFILE) )
