@@ -11,6 +11,12 @@ Group: CERN-IT/ST
 BuildArch: x86_64
 Source: %{name}-%{version}.tar.gz
 
+# The required Python version makes this package depend on Fedora 29 or similar recent distros to compile and run.
+BuildRequires: python(abi) >= 3.6
+Requires: python(abi) >= 3.6
+# The following to avoid to pick up /bin/python as an automatic dependency
+AutoReq: no
+
 %description
 This RPM provides the whodidwhat command for traceability for user commands 
 
@@ -29,6 +35,9 @@ mkdir -p %buildroot/usr/local/sbin
 mkdir -p %buildroot/etc/profile.d
 install -m 755 whodidwhatV2.py	     %buildroot/usr/local/sbin/whodidwhat
 install -m 755 whodidwhat.profile.sh    %buildroot/etc/profile.d
+
+%post
+pip3 install columnar
 
 %files
 %defattr(-,root,root,-)
