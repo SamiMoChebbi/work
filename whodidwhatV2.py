@@ -7,7 +7,7 @@ from datetime import datetime
 from columnar import columnar # pip install columnar
 import argparse
 
-PATH_HISTORY = '/home/gianmaria/Desktop/whodidwhat'
+PATH_HISTORY = '/root'
 HISTORY_LEADING = '.bash_history_'
 
 
