@@ -4,7 +4,7 @@
 
 Name: whodidwhat
 Summary: Traceability for user commands 
-Version: 2.0.0
+Version: 2.1.0
 License: AGPLv3
 Release: 1%{?dist}
 Group: CERN-IT/ST
@@ -46,6 +46,8 @@ pip3 install columnar
 
 
 %changelog
+* Mon Jun 7 2021 Sami Mohamed Chebbi <sami.mohamed.chebbi@cern.ch> 2.1.0
+- Resolve crash problems
 * Thu Jun 3 2021 Sami Mohamed Chebbi <sami.mohamed.chebbi@cern.ch> 2.0.0
 - Python implementation of whodidwhat to fix major issues
 - Add user, to and from filters
