@@ -6,6 +6,7 @@ from itertools  import zip_longest
 from datetime import datetime
 from columnar import columnar # pip install columnar
 import argparse
+import re
 
 PATH_HISTORY = '/root'
 HISTORY_LEADING = '.bash_history_'
@@ -16,12 +17,16 @@ def print_history(user: str, from_date: str, to: str):
     for history_file in iglob(f"{join(PATH_HISTORY, HISTORY_LEADING)}*"):
         user_history = history_file.split("/")[-1].replace(HISTORY_LEADING, "")
         with open(history_file, "r") as f:
-            for line in history_file.readlines []:
-                re.match("#[0-9]+",Lines)
-                date = datetime.utcfromtimestamp(int(date.strip()[1:]))
-                cmd = cmd.strip()
-                history_list.append([date, user_history, cmd])
-    
+            date = datetime.fromtimestamp(0)
+            for line in f.readlines():
+                line = line.strip()
+                if re.match("#[0-9]+", line):
+                    # this is a datestamp in unix format, convert into datetime
+                    date = datetime.utcfromtimestamp(int(line[1:]))
+                else:
+                    # line is a command
+                    history_list.append([date, user_history, line])
+
     # filter data
     if user:
         history_list = filter(lambda h: h[1] == user, history_list)
@@ -31,11 +36,11 @@ def print_history(user: str, from_date: str, to: str):
     if to:
         to_date = parse_date(to)
         history_list = filter(lambda h: h[0] <= to_date, history_list)
-    
+
     history_list = sorted(history_list)
     if history_list:
         table = columnar(history_list, headers=None, no_borders=True)
-        print(table)    
+        print(table)
 
 def parse_date(date: str) -> datetime:
     return datetime.strptime(date, '%Y-%m-%d %H:%M')
