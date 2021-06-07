@@ -16,7 +16,8 @@ def print_history(user: str, from_date: str, to: str):
     for history_file in iglob(f"{join(PATH_HISTORY, HISTORY_LEADING)}*"):
         user_history = history_file.split("/")[-1].replace(HISTORY_LEADING, "")
         with open(history_file, "r") as f:
-            for date, cmd in zip_longest(*[f]*2):
+            for line in history_file.readlines []:
+                re.match("#[0-9]+",Lines)
                 date = datetime.utcfromtimestamp(int(date.strip()[1:]))
                 cmd = cmd.strip()
                 history_list.append([date, user_history, cmd])
