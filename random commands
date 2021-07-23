@@ -1,0 +1,2 @@
+#copy a file to another machine
+$ scp /usr/lib/systemd/system/promtail.service root@st-048-cc8206e1:/usr/lib/systemd/system/
