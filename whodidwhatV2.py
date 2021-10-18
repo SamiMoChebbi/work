@@ -20,7 +20,7 @@ def print_history(user: str, from_date: str, to: str):
     for history_file in iglob(f"{join(PATH_HISTORY, HISTORY_LEADING)}*"):
         user_history = history_file.split("/")[-1].replace(HISTORY_LEADING, "")
         with open(history_file, "r") as f:
-            date = datetime.fromtimestamp(0)
+            date = convert_unix_time(0)
             for line in f.readlines():
                 line = line.strip()
                 if re.match("#[0-9]+", line):
