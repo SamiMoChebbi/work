@@ -4,13 +4,16 @@ from glob import iglob
 from os.path import join
 from itertools  import zip_longest
 from datetime import datetime
-from columnar import columnar # pip install columnar
+from tabulate import tabulate
 import argparse
 import re
+from os import environ
+from tzlocal import get_localzone # pip install tzlocal
 
 PATH_HISTORY = '/root'
 HISTORY_LEADING = '.bash_history_'
 
+local_tz = get_localzone()
 
 def print_history(user: str, from_date: str, to: str):
     history_list = []
@@ -22,7 +25,7 @@ def print_history(user: str, from_date: str, to: str):
                 line = line.strip()
                 if re.match("#[0-9]+", line):
                     # this is a datestamp in unix format, convert into datetime
-                    date = datetime.utcfromtimestamp(int(line[1:]))
+                    date = convert_unix_time(int(line[1:]))
                 else:
                     # line is a command
                     history_list.append([date, user_history, line])
@@ -39,8 +42,13 @@ def print_history(user: str, from_date: str, to: str):
 
     history_list = sorted(history_list)
     if history_list:
-        table = columnar(history_list, headers=None, no_borders=True)
+        table = tabulate(history_list, headers=None, tablefmt="plain")
         print(table)
+
+
+def convert_unix_time(t: int) -> datetime:
+    return datetime.fromtimestamp(t).astimezone(local_tz)
+
 
 def parse_date(date: str) -> datetime:
     return datetime.strptime(date, '%Y-%m-%d %H:%M')
