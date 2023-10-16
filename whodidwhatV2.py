@@ -46,7 +46,7 @@ def print_history(user: str, from_date: datetime, to: datetime):
 
     history_list.sort()
     if history_list:
-        table = tabulate(history_list, headers=None, tablefmt="plain")
+        table = tabulate(history_list, tablefmt="plain")
         print(table)
 
 def convert_unix_time(t: int) -> datetime:
